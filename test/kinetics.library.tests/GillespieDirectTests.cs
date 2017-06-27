@@ -5,7 +5,7 @@ using System;
 using Xunit;
 using System.Linq;
 
-namespace aidantwomey.src.dotnetcore.StochasticChemicalKinetics.test.kinetics.library.tests
+namespace StochasticChemicalKinetics.test.kinetics.library.tests
 {
     public class GillespieDirectTests
     {
@@ -16,7 +16,7 @@ namespace aidantwomey.src.dotnetcore.StochasticChemicalKinetics.test.kinetics.li
 
             var gillespieAlgorithm = new GillespieDirect(random);
 
-            Assert.Equal(0.0, gillespieAlgorithm.GetPath().Single().value );
+            Assert.Equal(0.0, gillespieAlgorithm.GetPath(0.0).Single().value );
         }
     }
 }

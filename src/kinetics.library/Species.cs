@@ -1,0 +1,19 @@
+namespace StochasticChemicalKinetics.src.kinetics.library
+{
+    public class Species
+    {
+        public Species(string species) { val = species; }
+        
+        public string val;
+        
+        public static implicit operator string(Species species)
+        {
+            return species.val;
+        }
+        
+        public static implicit operator Species(string species)
+        {
+            return new Species(species);
+        }
+    }
+}

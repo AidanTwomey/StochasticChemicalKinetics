@@ -19,7 +19,7 @@ namespace StochasticChemicalKinetics.src.kinetics.library.SSA
             _random = random;
         }
 
-        public IEnumerable<TimePoint<double>> GetPath()
+        public IEnumerable<TimePoint<double>> GetPath(double endTime)
         {
             throw new NotImplementedException();
         }
