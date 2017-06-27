@@ -17,10 +17,24 @@ namespace StochasticChemicalKinetics.src.kinetics.library
             _rate = rate;
         }
 
+        private double GetCounts( int coefficient, int speciesCount)
+        {
+            int count = 1;
+            int i = 0;
+
+            for( int c = coefficient ; c > 0 ; c--)
+            {
+                count *= (speciesCount - (i++) );
+            }
+
+            return (double)count;
+        }
+
         public double Propensity(ChemicalSystem system)
         {
             return _inputs
-                    .Select( s => (double)(system.Count(s.Key)) )
+                    .Select( s => new Tuple<int,int>( s.Value, (system.Count(s.Key))) )
+                    .Select( t => GetCounts( t.Item1, t.Item2 ) )
                     .Aggregate(_rate, (acc, count) => acc * count);
         }
     }
