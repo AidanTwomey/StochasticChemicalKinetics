@@ -1,0 +1,32 @@
+{
+    "timeLimit": 40,
+    "steps": 50,
+    "reactions": [
+        {
+            "equation": "2A -> 0",
+            "rate": 0.001
+        },
+        {
+            "equation": "A + B -> 0",
+            "rate": 0.01
+        },
+        {
+            "equation": "0 -> A",
+            "rate": 1.2
+        },
+        {
+            "equation": "0 -> B",
+            "rate": 1
+        }
+    ],
+    "initialPopulations": [
+        {
+            "species": "A",
+            "count": 0
+        },
+        {
+            "species": "B",
+            "count": 0
+        }
+    ]
+}

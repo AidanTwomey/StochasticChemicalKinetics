@@ -16,6 +16,10 @@ namespace StochasticChemicalKinetics.src.kinetics.library
             return new Species(species);
         }
 
+        public override string ToString()
+        {
+            return val;
+        }
 
 		protected bool Equals(Species other)
 		{
