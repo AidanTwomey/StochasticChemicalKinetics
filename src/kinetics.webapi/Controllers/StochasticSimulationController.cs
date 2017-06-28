@@ -8,16 +8,31 @@ using StochasticChemicalKinetics.src.kinetics.library;
 
 namespace kinetics.webapi.Controllers
 {
+    public class Simulation
+    {
+        public double timeLimit { get;set;}
+
+        public int steps { get;set;}
+
+        public IEnumerable<KeyValuePair<string,double>> reactions { get;set;}
+    }
+
     [Route("ssa/gillespie")]
     public class StochasticSimulationController : Controller
     {
         private readonly GillespieDirect _gillespieDirect = new GillespieDirect(new StochasticChemicalKinetics.src.kinetics.library.Random(DateTime.Now.Millisecond));
 
-        [HttpGet]
-        public JsonResult Get()
+        [HttpGet("{steps}")]
+        public JsonResult Get(int steps)
+        {
+            return Json("please use POST");
+        }
+
+        [HttpPost]
+        public JsonResult Post([FromBody] Simulation simulation)
         {
             return Json( _gillespieDirect
-                        .GetPath( GetReactions(), GetSystem(), 2.0, 20)
+                        .GetPath( GetReactions(), GetSystem(), simulation.timeLimit, simulation.steps)
                         .Select( r => new { r.Time, A = r.Value.Count("A"), B = r.Value.Count("B") }));
         }
 
@@ -54,12 +69,6 @@ namespace kinetics.webapi.Controllers
                 {"A", 0},
                 {"B", 0}
             } );
-        }
-
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
         }
     }
 }

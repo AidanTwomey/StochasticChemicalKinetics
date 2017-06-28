@@ -48,7 +48,7 @@ namespace StochasticChemicalKinetics.src.kinetics.library.SSA
                         .Single( pair => randoms.r2 > pair.Item1.Item1 && randoms.r2 < pair.Item1.Item2)
                         .Item2;
                 
-                t = Math.Log(1.0/randoms.r1) / totalPropensity;
+                t += Math.Log(1.0/randoms.r1) / totalPropensity;
 
                 evolvingSystem = evolvingSystem.React(selectedReaction);
 
