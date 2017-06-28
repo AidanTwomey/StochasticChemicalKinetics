@@ -17,5 +17,15 @@
   <ItemGroup>
     <ProjectReference Include="..\kinetics.library\kinetics.library.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="app.yaml" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
+  <PropertyGroup>
+  <TargetFramework>netcoreapp1.1</TargetFramework>
+  <RuntimeFrameworkVersion>1.0.3</RuntimeFrameworkVersion>
+
+</PropertyGroup>
 
 </Project>

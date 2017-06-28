@@ -39,7 +39,7 @@ namespace StochasticChemicalKinetics.test.kinetics.library.tests
                 {"B", 3}
             } );
 
-            var evolvedSystem = gillespieAlgorithm.GetPath(new []{r1,r2,r3}, system, 0.0).Single().Value;
+            var evolvedSystem = gillespieAlgorithm.GetPath(new []{r1,r2,r3}, system, 0.0, 1).Single().Value;
 
             Assert.Equal(1, evolvedSystem.Count("A") );
             Assert.Equal(2, evolvedSystem.Count("B") );

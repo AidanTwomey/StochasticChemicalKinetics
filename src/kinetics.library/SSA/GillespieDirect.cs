@@ -26,14 +26,14 @@ namespace StochasticChemicalKinetics.src.kinetics.library.SSA
             _random = random;
         }
 
-        public IEnumerable<TimePoint<ChemicalSystem>> GetPath(IList<Reaction> reactions, ChemicalSystem initialSystem, double endTime)
+        public IEnumerable<TimePoint<ChemicalSystem>> GetPath(IList<Reaction> reactions, ChemicalSystem initialSystem, double endTime, int numPoints)
         {
             double t = 0;
             var evolvingSystem = initialSystem;
             int numReactions = reactions.Count;
 
-            var zeroPoint = new []{0.0};
-            var endPoint = new []{1.0};
+            double reportingInterval = endTime/(double)numPoints;
+            double nextPoint = reportingInterval;
 
             do{
                 var randoms = _random.GetNext();
@@ -43,10 +43,8 @@ namespace StochasticChemicalKinetics.src.kinetics.library.SSA
 
                 var normalisedPropensities = propensities.Select( p => p / totalPropensity).ToList();
 
-                var partitionedPropensities =  Partitioner.ToIntervals(normalisedPropensities)
-                        .Zip( reactions, (interval,reaction) => new Tuple<Tuple<double,double>,Reaction>(interval, reaction) );
-
-                var selectedReaction = partitionedPropensities
+                var selectedReaction =  Partitioner.ToIntervals(normalisedPropensities)
+                        .Zip( reactions, (interval,reaction) => new Tuple<Tuple<double,double>,Reaction>(interval, reaction) )
                         .Single( pair => randoms.r2 > pair.Item1.Item1 && randoms.r2 < pair.Item1.Item2)
                         .Item2;
                 
@@ -54,9 +52,13 @@ namespace StochasticChemicalKinetics.src.kinetics.library.SSA
 
                 evolvingSystem = evolvingSystem.React(selectedReaction);
 
-                yield return new TimePoint<ChemicalSystem>(0.0, evolvingSystem);
+                if ( t > nextPoint)
+                {
+                    yield return new TimePoint<ChemicalSystem>(t, evolvingSystem);
+                    nextPoint += reportingInterval;
+                }
 
-            }while (t <= endTime);
+            } while (t <= endTime);
         }
     }
 }
