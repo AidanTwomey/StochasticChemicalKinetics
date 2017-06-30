@@ -1,4 +1,8 @@
 # StochasticChemicalKinetics
 
  
-![stochastic](https://www.dropbox.com/s/47zkujtsed1acs0/stochastic_A.png?dl=0)
+![stochastic_simulation](https://00e9e64bac6c7961c9c43f67a67ca4d10cd092b7219fc8c326-apidata.googleusercontent.com/download/storage/v1/b/aidan_images/o/Stochastic.png?qk=AD5uMEtes6ENbtdrNB1_30qpRK0rBQNBrADtdv3gn-0M_3fwQGa0qY1ZyeYkyFjM4xfLn0GG2OF13lQdZEGOtEceqMHON1NwV4C434gsYWl7pheGiVlkzaj63h9xFwP3y4VbhHQz4TIkqFcQ66Ygntyn2QIUP_-LpcQ6wt5znxEzxScHppvv014gmH1x1zkAB3BirokWBqIqe7nqxydW0FVoZ2LlJWTGQDdoYl-ghln4G4GEshf4q5NJK7YzL_DByfqBm-vm-oRQWaMuB6SJUXJePaWagx0meaxGl-CyVFyyzAhpqLTqbVvNAThBAV_11R7IABhbEBX4YCWH57wuTiaeI49OW_qXon7O-3LtQ9y4GL8gT7O2zgvUDKlQUMWzdvInXDWiSsKaCwtOdlCvboH86PoLBYHCtMyCRsFanqSqE-A7LW9T4rI5BEDVz9JsqO9jVALd4OMH6374Sd2ypA2M3NoaxWh_lUSotiRcaSNPl_OCzjq_YE24hEfotHIu0om3jQmEutJunKBaCCERfv8vrSh8K5tMZFuYFXUx6R4QRmElewjmdwbK_CPfCCOslPoYU-eHDhy8OHEYft0jKzdeMWoqCzATIGaH7lcmXNzP2YkaLZHRzHTSREl39bGbv8JqktdxqyzoaDGWb9oHiSvc2r8_dPSyCK3ZE8ZfrOwD4pH3sOw9JzCq53oNM43aXqo3ZaSZ0O3qkMHFyzVx1CsZX5oJH5mZHKliwmyAyqYyWIZgzLw70BdmjR_yMOMW5Kjc92i32z5T8ehBAVz6C472SdmiwLIl0g "A+A->0;A+B->0;0->A;0->B")
+
+Calculating the concentrations of chemicals arising from a system of reactions is well understood for systems where the number of reactants is sufficient for them to mingle and react freely. The [Law of Mass Action](https://en.wikipedia.org/wiki/Law_of_mass_action) describes how a system of differential equations can model such a system, and work out where the equilibrium will occur. When however the number of reactants is low, the chance of reactants meeting becomes small enough that the system may diverge from the expected equilibrium for long periods. See this [introduction](https://people.maths.ox.ac.uk/erban/Education/StochReacDiff.pdf). 
+
+
