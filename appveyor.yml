@@ -15,6 +15,7 @@ install:
   - choco install gcloudsdk
   - refreshenv
   - gcloud.cmd components copy-bundled-python>>python_path.txt && SET /p CLOUDSDK_PYTHON=<python_path.txt && DEL python_path.txt
+  - gcloud.cmd components update --quiet
   - secure-file\tools\secure-file -decrypt "My First Project-4c1a58f53f53.json.enc" -secret %gcp_app_engine_service_account%
 deploy_script:
 - cmd: >-
@@ -22,7 +23,5 @@ deploy_script:
     dotnet publish -c Release
 
     gcloud auth activate-service-account crypto-monolith-156009@appspot.gserviceaccount.com --key-file="My First Project-4c1a58f53f53.json"
-
-    gcloud components install beta
 
     gcloud beta app deploy src/kinetics.webapi/bin/Release/netcoreapp1.1/publish/app.yaml
