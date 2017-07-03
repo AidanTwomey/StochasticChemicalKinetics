@@ -1,0 +1,26 @@
+version: 1.0.{build}
+image: Visual Studio 2015
+environment:
+  gcp_app_engine_service_account:
+    secure: ybv1IQS2tSs+dxUqDCGqIcQ2SIZcup4fj5JYZiAdGf7a3Ol1b+k/FdaZyGfRO8OyWxgM7/F6iaBUivHWtYrpt1kZcavundHf38GbjRC79T4=
+build_script:
+- cmd: >-
+    dotnet restore
+
+    dotnet publish -c Release
+test_script:
+- cmd: dotnet test test/kinetics.library.tests/kinetics.library.tests.csproj
+install:
+  - nuget install secure-file -ExcludeVersion
+  - secure-file\tools\secure-file -decrypt My First Project-4c1a58f53f53.json.enc -secret %gcp_app_engine_service_account%
+deploy_script:
+- cmd: >-
+    dotnet publish -c Release
+
+
+    gcloud auth activate-service-account crypto-monolith-156009@appspot.gserviceaccount.com --key-file="My First Project-4c1a58f53f53.json"
+
+
+    gcloud beta app deploy src/kinetics.webapi/bin/Release/netcoreapp1.1/p
+
+    ublish/app.yaml
