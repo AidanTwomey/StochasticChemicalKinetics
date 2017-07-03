@@ -12,6 +12,7 @@ test_script:
 - cmd: dotnet test test/kinetics.library.tests/kinetics.library.tests.csproj
 install:
   - nuget install secure-file -ExcludeVersion
+  - choco install gcloudsdk
   - secure-file\tools\secure-file -decrypt "My First Project-4c1a58f53f53.json.enc" -secret %gcp_app_engine_service_account%
 deploy_script:
 - cmd: >-
