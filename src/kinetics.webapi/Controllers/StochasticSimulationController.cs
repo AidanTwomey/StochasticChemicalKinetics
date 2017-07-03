@@ -7,6 +7,7 @@ using StochasticChemicalKinetics.src.kinetics.library.SSA;
 using StochasticChemicalKinetics.src.kinetics.library;
 using StochasticChemicalKinetics.src.kinetics.library.Parsing;
 using kinetics.webapi;
+using log4net;
 
 namespace kinetics.webapi.Controllers
 {
@@ -14,6 +15,8 @@ namespace kinetics.webapi.Controllers
     public class StochasticSimulationController : Controller
     {
         private readonly GillespieDirect _gillespieDirect = new GillespieDirect(new StochasticChemicalKinetics.src.kinetics.library.Random(DateTime.Now.Millisecond));
+
+        private ILog log = LogManager.GetLogger(typeof(StochasticSimulationController));
 
         [HttpGet("{steps}")]
         public JsonResult Get(int steps)
@@ -24,6 +27,8 @@ namespace kinetics.webapi.Controllers
         [HttpPost]
         public JsonResult Post([FromBody] Simulation simulation)
         {
+            log.Info(String.Join(";", simulation.reactions.Select(r => r.equation)));
+
             return Json( _gillespieDirect
                         .GetPath( 
                             GetReactions(simulation.reactions), 

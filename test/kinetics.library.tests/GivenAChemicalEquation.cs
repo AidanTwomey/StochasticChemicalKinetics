@@ -12,8 +12,10 @@ namespace StochasticChemicalKinetics.test.kinetics.library.tests
     {
 
         [Theory]
+        [InlineData("2A->0", new []{"A"}, new string[]{}, new []{2}, new int[]{})]
         [InlineData("A -> 0", new []{"A"}, new string[]{}, new []{1}, new int[]{})]
         [InlineData("A + B -> 0", new []{"A", "B"}, new string[]{}, new []{1, 1}, new int[]{})]
+        [InlineData("A+B->0", new []{"A", "B"}, new string[]{}, new []{1, 1}, new int[]{})]
         [InlineData("A + B -> C", new []{"A", "B"}, new []{"C"}, new []{1, 1}, new []{1})]
         [InlineData("0 -> C", new string[]{}, new []{"C"}, new int[]{}, new []{1})]
         [InlineData("2A + B -> 0", new []{"A", "B"}, new string[]{}, new []{2, 1}, new int[]{})]

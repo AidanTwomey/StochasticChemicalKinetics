@@ -13,7 +13,7 @@ namespace StochasticChemicalKinetics.src.kinetics.library.Parsing
 
             var divider = equation.IndexOf( "->" );
 
-            var inputs = equation.Substring(0, divider-1).Trim();
+            var inputs = equation.Substring(0, divider).Trim();
             var outputs = equation.Substring( divider+2, equation.Length - divider - 2).Trim();
 
             return new Reaction( 
